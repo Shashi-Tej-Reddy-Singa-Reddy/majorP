@@ -872,8 +872,11 @@ def apply_augmentations(image, techniques, params):
         new_image.paste(image, (max(0, x_offset), max(0, y_offset)))
         image = new_image
 
-    if "flipping" in techniques:
-        image = ImageOps.mirror(image)
+    if "flipping_horizontal" in techniques:
+        image = ImageOps.mirror(image)  # Horizontal flip
+
+    if "flipping_vertical" in techniques:
+        image = ImageOps.flip(image)  # Vertical flip
 
     # Color Transformations
     if "brightness" in techniques and "brightness_factor" in params:
@@ -888,6 +891,7 @@ def apply_augmentations(image, techniques, params):
         image = ImageOps.grayscale(image)
 
     return image
+
 
 @app.route('/')
 def index():
