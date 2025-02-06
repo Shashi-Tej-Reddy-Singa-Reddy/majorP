@@ -39,17 +39,34 @@
             <span id="translation_y_value">0</span>
         </label>
         <br><br>
-        
+
         <label>
             <input type="checkbox" name="flipping_horizontal" value="yes"> Flipping (Horizontal)
         </label>
         <br><br>
-        
+
         <label>
             <input type="checkbox" name="flipping_vertical" value="yes"> Flipping (Vertical)
         </label>
         <br><br>
-        
+
+        <label>
+            <input type="checkbox" name="cropping" value="yes"> Cropping
+            <br>
+            Left: <input type="number" name="crop_left" value="0" min="0">
+            Top: <input type="number" name="crop_top" value="0" min="0">
+            Right: <input type="number" name="crop_right" value="0" min="0">
+            Bottom: <input type="number" name="crop_bottom" value="0" min="0">
+        </label>
+        <br><br>
+
+        <label>
+            <input type="checkbox" name="padding" value="yes"> Padding
+            <br>
+            Size: <input type="number" name="padding_size" value="10" min="0">
+            Color: <input type="color" name="padding_color" value="#000000">
+        </label>
+        <br><br>
 
         <h2>Color Transformations</h2>
 
@@ -68,7 +85,68 @@
         <br><br>
 
         <label>
+            <input type="checkbox" name="saturation" value="yes"> Saturation
+            <input type="range" name="saturation_factor" min="0" max="2" step="0.1" value="1" oninput="updateValue('saturation_value', this.value)">
+            <span id="saturation_value">1.0</span>
+        </label>
+        <br><br>
+
+        <label>
             <input type="checkbox" name="grayscale" value="yes"> Convert to Grayscale
+        </label>
+        <br><br>
+
+        <h2>Noise Transformations</h2>
+
+        <label>
+            <input type="checkbox" name="gaussian_noise" value="yes"> Gaussian Noise
+            Variance:
+            <input type="number" name="gaussian_variance" min="0.001" max="0.1" step="0.001" value="0.01">
+        </label>
+        <br><br>
+
+        <label>
+            <input type="checkbox" name="salt_pepper_noise" value="yes"> Salt-and-Pepper Noise
+            Amount:
+            <input type="number" name="sap_amount" min="0.001" max="0.05" step="0.001" value="0.005">
+        </label>
+        <br><br>
+
+        <label>
+            <input type="checkbox" name="speckle_noise" value="yes"> Speckle Noise
+        </label>
+        <br><br>
+
+        <label>
+            <input type="checkbox" name="motion_blur" value="yes"> Motion Blur
+            Size:
+            <input type="number" name="motion_blur_size" min="3" max="21" step="2" value="9">
+        </label>
+        <br><br>
+
+        <h2>Occlusion Transformations</h2>
+
+        <label>
+            <input type="checkbox" name="cutout" value="yes"> Cutout
+            Size:
+            <input type="number" name="cutout_size" value="50" min="1">
+        </label>
+        <br><br>
+
+        <label>
+            <input type="checkbox" name="random_erasing" value="yes"> Random Erasing
+        </label>
+        <br><br>
+
+        <label>
+            <input type="checkbox" name="mixup" value="yes"> Mixup
+            Alpha:
+            <input type="number" name="mixup_alpha" value="0.4" step="0.1">
+        </label>
+        <br><br>
+
+        <label>
+            <input type="checkbox" name="cutmix" value="yes"> CutMix
         </label>
         <br><br>
 

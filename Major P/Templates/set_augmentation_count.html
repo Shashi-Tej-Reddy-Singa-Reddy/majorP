@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Set Augmentation Count</title>
-    <script>
-        function updateAugmentValue(value) {
-            document.getElementById("augment_count_value").innerText = value;
-        }
-    </script>
+    <title>Set Augmentation Parameters</title>
 </head>
 <body>
-    <h1>How Many Times to Apply Augmentations?</h1>
-    <p>You have uploaded {{ uploaded_images }} image(s).</p>
+    <h1>Set Augmentation Parameters</h1>
+    <p>You have uploaded <strong>{{ uploaded_images }}</strong> images.</p>
+    <p>You have selected the following augmentations:</p>
+    <ul>
+        {% for key, value in augmentations.items() %}
+            {% if value == 'yes' %}
+                <li>{{ key.replace('_', ' ').title() }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
     <form action="{{ url_for('set_augmentation_count') }}" method="post">
         <label>
-            Augmentation Count:
-            <input type="number" name="augment_count" min="1" value="1" oninput="updateAugmentValue(this.value)">
-            <span id="augment_count_value">1</span>
+            Number of images to augment (max {{ uploaded_images }}):
+            <input type="number" name="images_to_augment" value="{{ uploaded_images }}" min="1" max="{{ uploaded_images }}">
         </label>
         <br><br>
-
         <button type="submit">Apply Augmentations</button>
     </form>
 </body>
