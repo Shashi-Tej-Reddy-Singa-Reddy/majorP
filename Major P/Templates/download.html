@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Augmented Versions</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #ddd;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Augmented Versions</h1>
+    <table>
+        <tr>
+            <th>Version</th>
+            <th>Total Images</th>
+            <th>Augmentations Applied</th>
+            <th>Parameters</th>
+            <th>Download</th>
+        </tr>
+        {% for version, metadata in versions.items() %}
+        <tr>
+            <td>{{ version }}</td>
+            <td>{{ metadata.total_augmented_images }}</td>
+            <td>
+                <ul>
+                    {% for augmentation in metadata.selected_augmentations %}
+                        <li>{{ augmentation }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    {% for key, value in metadata.augmentation_params.items() %}
+                        {% if key in ['rotation_angle', 'scaling_factor', 'translation_x', 'translation_y', 'brightness_factor', 'contrast_factor'] %}
+                            <li>{{ key }}: {{ value }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </td>
+            <td><a href="{{ url_for('download_zip', version='version_' ~ version|string) }}">Download ZIP</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
