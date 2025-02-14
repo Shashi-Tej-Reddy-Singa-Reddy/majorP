@@ -1,156 +1,153 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Select Augmentations</title>
-    <script>
-        function updateValue(id, value) {
-            document.getElementById(id).innerText = value;
-        }
-    </script>
+  <title>Select Augmentations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1em;
+      color: #555;
+    }
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    input[type="range"],
+    input[type="number"],
+    input[type="color"] {
+      margin: 5px 0;
+    }
+    button {
+      display: block;
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 20px auto 0;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <script>
+    function updateValue(id, value) {
+      document.getElementById(id).innerText = value;
+    }
+  </script>
 </head>
 <body>
-    <h1>Select Augmentations</h1>
-    <form action="{{ url_for('select_augmentations') }}" method="post">
-        <h2>Geometric Transformations</h2>
-
-        <label>
-            <input type="checkbox" name="rotation" value="yes"> Rotation
-            <input type="range" name="rotation_angle" min="-90" max="90" value="0" oninput="updateValue('rotation_value', this.value)">
-            <span id="rotation_value">0</span>°
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="scaling" value="yes"> Scaling
-            <input type="range" name="scaling_factor" min="0.5" max="2" step="0.1" value="1" oninput="updateValue('scaling_value', this.value)">
-            <span id="scaling_value">1.0</span>
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="translation" value="yes"> Translation
-            <br>
-            X Offset:
-            <input type="range" name="translation_x" min="-50" max="50" value="0" oninput="updateValue('translation_x_value', this.value)">
-            <span id="translation_x_value">0</span>
-            <br>
-            Y Offset:
-            <input type="range" name="translation_y" min="-50" max="50" value="0" oninput="updateValue('translation_y_value', this.value)">
-            <span id="translation_y_value">0</span>
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="flipping_horizontal" value="yes"> Flipping (Horizontal)
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="flipping_vertical" value="yes"> Flipping (Vertical)
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="cropping" value="yes"> Cropping
-            <br>
-            Left: <input type="number" name="crop_left" value="0" min="0">
-            Top: <input type="number" name="crop_top" value="0" min="0">
-            Right: <input type="number" name="crop_right" value="0" min="0">
-            Bottom: <input type="number" name="crop_bottom" value="0" min="0">
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="padding" value="yes"> Padding
-            <br>
-            Size: <input type="number" name="padding_size" value="10" min="0">
-            Color: <input type="color" name="padding_color" value="#000000">
-        </label>
-        <br><br>
-
-        <h2>Color Transformations</h2>
-
-        <label>
-            <input type="checkbox" name="brightness" value="yes"> Brightness
-            <input type="range" name="brightness_factor" min="0.5" max="2" step="0.1" value="1" oninput="updateValue('brightness_value', this.value)">
-            <span id="brightness_value">1.0</span>
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="contrast" value="yes"> Contrast
-            <input type="range" name="contrast_factor" min="0.5" max="2" step="0.1" value="1" oninput="updateValue('contrast_value', this.value)">
-            <span id="contrast_value">1.0</span>
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="saturation" value="yes"> Saturation
-            <input type="range" name="saturation_factor" min="0" max="2" step="0.1" value="1" oninput="updateValue('saturation_value', this.value)">
-            <span id="saturation_value">1.0</span>
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="grayscale" value="yes"> Convert to Grayscale
-        </label>
-        <br><br>
-
-        <h2>Noise Transformations</h2>
-
-        <label>
-            <input type="checkbox" name="gaussian_noise" value="yes"> Gaussian Noise
-            Variance:
-            <input type="number" name="gaussian_variance" min="0.001" max="0.1" step="0.001" value="0.01">
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="salt_pepper_noise" value="yes"> Salt-and-Pepper Noise
-            Amount:
-            <input type="number" name="sap_amount" min="0.001" max="0.05" step="0.001" value="0.005">
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="speckle_noise" value="yes"> Speckle Noise
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="motion_blur" value="yes"> Motion Blur
-            Size:
-            <input type="number" name="motion_blur_size" min="3" max="21" step="2" value="9">
-        </label>
-        <br><br>
-
-        <h2>Occlusion Transformations</h2>
-
-        <label>
-            <input type="checkbox" name="cutout" value="yes"> Cutout
-            Size:
-            <input type="number" name="cutout_size" value="50" min="1">
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="random_erasing" value="yes"> Random Erasing
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="mixup" value="yes"> Mixup
-            Alpha:
-            <input type="number" name="mixup_alpha" value="0.4" step="0.1">
-        </label>
-        <br><br>
-
-        <label>
-            <input type="checkbox" name="cutmix" value="yes"> CutMix
-        </label>
-        <br><br>
-
-        <button type="submit">Next</button>
-    </form>
+  <h1>Select Augmentations</h1>
+  <form action="{{ url_for('select_augmentations') }}" method="post">
+    <h2>Geometric Transformations</h2>
+    <label>
+      <input type="checkbox" name="rotation" value="yes"> Rotation
+      <input type="range" name="rotation_angle" min="-90" max="90" value="0" oninput="updateValue('rotation_value', this.value)">
+      <span id="rotation_value">0</span>°
+    </label>
+    <label>
+      <input type="checkbox" name="scaling" value="yes"> Scaling
+      <input type="range" name="scaling_factor" min="0.5" max="2" step="0.1" value="1" oninput="updateValue('scaling_value', this.value)">
+      <span id="scaling_value">1.0</span>
+    </label>
+    <label>
+      <input type="checkbox" name="translation" value="yes"> Translation
+      <br>
+      X Offset: <input type="range" name="translation_x" min="-50" max="50" value="0" oninput="updateValue('translation_x_value', this.value)">
+      <span id="translation_x_value">0</span>
+      <br>
+      Y Offset: <input type="range" name="translation_y" min="-50" max="50" value="0" oninput="updateValue('translation_y_value', this.value)">
+      <span id="translation_y_value">0</span>
+    </label>
+    <label>
+      <input type="checkbox" name="flipping_horizontal" value="yes"> Flipping (Horizontal)
+    </label>
+    <label>
+      <input type="checkbox" name="flipping_vertical" value="yes"> Flipping (Vertical)
+    </label>
+    <label>
+      <input type="checkbox" name="cropping" value="yes"> Cropping
+      <br>
+      Left: <input type="number" name="crop_left" value="0" min="0">
+      Top: <input type="number" name="crop_top" value="0" min="0">
+      Right: <input type="number" name="crop_right" value="0" min="0">
+      Bottom: <input type="number" name="crop_bottom" value="0" min="0">
+    </label>
+    <label>
+      <input type="checkbox" name="padding" value="yes"> Padding
+      <br>
+      Size: <input type="number" name="padding_size" value="10" min="0">
+      Color: <input type="color" name="padding_color" value="#000000">
+    </label>
+    <h2>Color Transformations</h2>
+    <label>
+      <input type="checkbox" name="brightness" value="yes"> Brightness
+      <input type="range" name="brightness_factor" min="0.5" max="2" step="0.1" value="1" oninput="updateValue('brightness_value', this.value)">
+      <span id="brightness_value">1.0</span>
+    </label>
+    <label>
+      <input type="checkbox" name="contrast" value="yes"> Contrast
+      <input type="range" name="contrast_factor" min="0.5" max="2" step="0.1" value="1" oninput="updateValue('contrast_value', this.value)">
+      <span id="contrast_value">1.0</span>
+    </label>
+    <label>
+      <input type="checkbox" name="saturation" value="yes"> Saturation
+      <input type="range" name="saturation_factor" min="0" max="2" step="0.1" value="1" oninput="updateValue('saturation_value', this.value)">
+      <span id="saturation_value">1.0</span>
+    </label>
+    <label>
+      <input type="checkbox" name="grayscale" value="yes"> Convert to Grayscale
+    </label>
+    <h2>Noise Transformations</h2>
+    <label>
+      <input type="checkbox" name="gaussian_noise" value="yes"> Gaussian Noise Variance:
+      <input type="number" name="gaussian_variance" min="0.001" max="0.1" step="0.001" value="0.01">
+    </label>
+    <label>
+      <input type="checkbox" name="salt_pepper_noise" value="yes"> Salt-and-Pepper Noise Amount:
+      <input type="number" name="sap_amount" min="0.001" max="0.05" step="0.001" value="0.005">
+    </label>
+    <label>
+      <input type="checkbox" name="speckle_noise" value="yes"> Speckle Noise
+    </label>
+    <label>
+      <input type="checkbox" name="motion_blur" value="yes"> Motion Blur Size:
+      <input type="number" name="motion_blur_size" min="3" max="21" step="2" value="9">
+    </label>
+    <h2>Occlusion Transformations</h2>
+    <label>
+      <input type="checkbox" name="cutout" value="yes"> Cutout Size:
+      <input type="number" name="cutout_size" value="50" min="1">
+    </label>
+    <label>
+      <input type="checkbox" name="random_erasing" value="yes"> Random Erasing
+    </label>
+    <label>
+      <input type="checkbox" name="mixup" value="yes"> Mixup Alpha:
+      <input type="number" name="mixup_alpha" value="0.4" step="0.1">
+    </label>
+    <label>
+      <input type="checkbox" name="cutmix" value="yes"> CutMix
+    </label>
+    <button type="submit">Next</button>
+  </form>
 </body>
 </html>

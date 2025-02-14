@@ -2169,8 +2169,12 @@ def download():
 
 @app.route('/download_zip/<version>')
 def download_zip(version):
-    version_folder = os.path.join(app.config['AUGMENTED_FOLDER'], f"version_{version}")
-    zip_filename = f"augmented_images_{version}.zip"
+    # Check if the version parameter already includes "version_"
+    if not version.startswith("version_"):
+        version = f"version_{version}"
+
+    version_folder = os.path.join(app.config['AUGMENTED_FOLDER'], version)
+    zip_filename = f"augmented_images_{version.split('_')[-1]}.zip"
 
     # Create an in-memory ZIP file
     memory_file = BytesIO()
@@ -2182,7 +2186,10 @@ def download_zip(version):
                     zipf.write(file_path, os.path.relpath(file_path, version_folder))
         # Add metadata.json
         metadata_path = os.path.join(version_folder, "metadata.json")
-        zipf.write(metadata_path, os.path.relpath(metadata_path, version_folder))
+        if os.path.exists(metadata_path):  # Ensure metadata exists
+            zipf.write(metadata_path, os.path.relpath(metadata_path, version_folder))
+        else:
+            return f"Metadata file not found in {version_folder}", 404
 
     memory_file.seek(0)
 
