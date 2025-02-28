@@ -41,3 +41,21 @@ Used in deep learning to handle domain shift problems.
 Histogram Matching: Matching color histograms of different images.
 GAN-based Augmentation: Using Generative Adversarial Networks (GANs) to generate new images.
 Style Transfer: Applying artistic or domain-specific styles to images
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+explain all the transformations in detail with an example wit hnumbers and its formulas and give real time examples 
+for data augumentations and what data uses these augmentatoins and many more all details
