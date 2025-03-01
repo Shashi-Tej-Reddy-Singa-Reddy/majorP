@@ -57,5 +57,4 @@ Style Transfer: Applying artistic or domain-specific styles to images
 
 
 
-explain all the transformations in detail with an example wit hnumbers and its formulas and give real time examples 
-for data augumentations and what data uses these augmentatoins and many more all details
+explain all the transformations in detail with an example with numbers and its formulas and give real time examples for data augumentations and what data uses these augmentatoins and many more all details
