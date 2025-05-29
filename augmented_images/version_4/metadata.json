@@ -1,0 +1,28 @@
+{
+    "total_augmented_images": 2,
+    "images_to_augment": 2,
+    "selected_augmentations": [
+        "rotation"
+    ],
+    "augmentation_params": {
+        "brightness_factor": "1",
+        "contrast_factor": "1",
+        "crop_bottom": "0",
+        "crop_left": "0",
+        "crop_right": "0",
+        "crop_top": "0",
+        "cutout_size": "50",
+        "gaussian_variance": "0.01",
+        "mixup_alpha": "0.4",
+        "motion_blur_size": "9",
+        "padding_color": "#000000",
+        "padding_size": "10",
+        "rotation": "yes",
+        "rotation_angle": "45",
+        "sap_amount": "0.005",
+        "saturation_factor": "1",
+        "scaling_factor": "1",
+        "translation_x": "0",
+        "translation_y": "0"
+    }
+}
