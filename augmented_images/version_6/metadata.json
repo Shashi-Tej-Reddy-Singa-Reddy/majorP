@@ -1,0 +1,30 @@
+{
+    "total_augmented_images": 1,
+    "images_to_augment": 1,
+    "selected_augmentations": [
+        "brightness",
+        "contrast"
+    ],
+    "augmentation_params": {
+        "brightness": "yes",
+        "brightness_factor": "1.8",
+        "contrast": "yes",
+        "contrast_factor": "1.9",
+        "crop_bottom": "0",
+        "crop_left": "0",
+        "crop_right": "0",
+        "crop_top": "0",
+        "cutout_size": "50",
+        "gaussian_variance": "0.01",
+        "mixup_alpha": "0.4",
+        "motion_blur_size": "9",
+        "padding_color": "#000000",
+        "padding_size": "10",
+        "rotation_angle": "0",
+        "sap_amount": "0.005",
+        "saturation_factor": "1",
+        "scaling_factor": "1",
+        "translation_x": "0",
+        "translation_y": "0"
+    }
+}
